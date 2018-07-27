@@ -11,6 +11,12 @@ let rect = new Rect(100,100,100,100)
 let max = new Rect(0,0,w,h)
 
 let target = max;
+
+let image = new Image();
+const project = "icons"
+image.src =`https://scrapbox.io/api/pages/${project}/${"gyazo"}/icon`;
+
+const drawImage =  (image,rect) => ctx.drawImage(image, rect.x, rect.y, rect.width, rect.height)
 const update = () => {
   ctx.clearRect(0,0,w,h);
   ctx.strokeStyle = 'rgb(00,00,255)'; //枠線の色は青
@@ -19,6 +25,8 @@ const update = () => {
   rect.easeTo(target, 0.1);
   rect.draw(ctx)
   ctx.fill();
+
+  drawImage(image,rect);
 
   requestAnimationFrame(update)
 }
